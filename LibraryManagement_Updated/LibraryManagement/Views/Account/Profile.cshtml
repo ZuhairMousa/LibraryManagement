@@ -1,0 +1,58 @@
+@model User
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card p-5">
+            <div class="text-center mb-4">
+                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                     style="width:80px; height:80px; font-size:2rem;">
+                    @Model.FullName[0].ToString().ToUpper()
+                </div>
+                <h4 class="fw-bold">@Model.FullName</h4>
+                @if (Model.Role == "Admin")
+                {
+                    <span class="badge bg-warning text-dark">Admin</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">User</span>
+                }
+            </div>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td class="fw-semibold text-muted" style="width:35%">User ID</td>
+                    <td>@Model.UserId</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold text-muted">Full Name</td>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold text-muted">Email</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold text-muted">Role</td>
+                    <td>@Model.Role</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold text-muted">Member Since</td>
+                    <td>@Model.CreatedAt.ToString("MMMM dd, yyyy")</td>
+                </tr>
+            </table>
+
+            <div class="d-flex gap-2 mt-2">
+                <a asp-action="ChangePassword" class="btn btn-outline-primary">
+                    <i class="fas fa-key me-2"></i>Change Password
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
